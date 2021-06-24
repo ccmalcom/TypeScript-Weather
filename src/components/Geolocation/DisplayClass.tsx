@@ -59,8 +59,10 @@ export default class CurrentWeather extends Component<{}, WeatherState>{
         console.log(this.state.currentLat, this.state.currentLong);
     }
     
+    // * will need an api key to test (submitted in canvas comments)
     weatherFetch (){
-        let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.currentLat}&lon=${this.state.currentLong}&units=imperial&appid=b8f4c3133765988ddc158802e95a6773`
+        let API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+        let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.currentLat}&lon=${this.state.currentLong}&units=imperial&appid=${API_KEY}`
         console.log(url);
         fetch(url)
         .then(res => res.json())
@@ -79,7 +81,6 @@ export default class CurrentWeather extends Component<{}, WeatherState>{
         return(
             <div>
             <CurrentWeatherDisplay locationWeather={this.state.locationWeather}/> 
-
             </div>
         )
     }
